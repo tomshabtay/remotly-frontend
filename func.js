@@ -8,11 +8,11 @@ router.get('/', (req, res) => {
 var options = {
   host: 'localhost',
   port: 4567,
-  path: '/'
+  path: 'devices/add/name=' + newdevice.name + 
+  		'&password=' + newdevice.password + 
+  		'&ip=' + newdevice.ip + 
+  		'&username=' + newdevice.username
 };
-
-
-
 
 http.get(options, function(resp){
 	resp.setEncoding('utf8');
@@ -23,10 +23,6 @@ http.get(options, function(resp){
 }).on("error", function(e){
   console.log("Got error: " + e.message);
 });
-
-
-
-
 
     res.send("");
 });
