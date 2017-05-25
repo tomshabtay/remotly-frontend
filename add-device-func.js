@@ -5,6 +5,8 @@ var http = require('http');
 /* GET api listing. */
 router.get('/', (req, res) => {
 
+var messageFromServer = ""; 
+
 var options = {
   host: 'localhost',
   port: 4567,
@@ -17,14 +19,21 @@ var options = {
 http.get(options, function(resp){
 	resp.setEncoding('utf8');
 	resp.on('data', function(chunk){
-	   console.log(chunk);
+
+	 messageFromServer = chunk;
+  if(messageFromServer === 'success'){
+    res.redirect(303, '/device-added-success');
+  }else{
+    res.redirect(303, '/device-added-fail');
+  }
+
  	});
  	
 }).on("error", function(e){
   console.log("Got error: " + e.message);
 });
-
-    res.send("");
+    
+    //res.send("");
 });
 
 

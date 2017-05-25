@@ -6,8 +6,11 @@ var formidable = require('formidable');
 var credentials = require('./credentials.js');
 
 //New Device
-var func = require('./func');
+var add_device_func = require('./add-device-func');
 newdevice = {};
+
+//List Device
+var list_devices_func = require('./list-devices-func');
 
 app.disable('x-powered-by');
 //Set handlebars
@@ -44,27 +47,18 @@ app.get('/about',function(req , res){
 	res.render('about');
 });
 
-
-app.get('/contact' , function(req , res){
-	res.render('contact' , {csrf: 'CSRF token here'});
-});
-
+//Add Device
 app.get('/add-device' , function(req , res){
 	res.render('add-device' , {csrf: 'CSRF token here'});
 });
 
-app.get('/thankyou' , function(req , res){
-	res.render('thankyou');
+
+app.get('/device-added-success',function(req , res){
+	res.render('device-added-success');
 });
 
-app.post('/process' , function(req , res){
-	console.log('Form: ' + req.query.form);
-	console.log('CSRF token: ' + req.body._csrf);
-	console.log('Email: ' + req.body.email);
-	console.log('Q: ' + req.body.ques);
-	res.redirect(303, '/thankyou');
-
-	
+app.get('/device-added-fail',function(req , res){
+	res.render('device-added-fail');
 });
 
 app.post('/process-add-device' , function(req , res){
@@ -79,12 +73,16 @@ app.post('/process-add-device' , function(req , res){
 	newdevice.username = req.body.username;
 	newdevice.ip = req.body.ip;
 
-	res.redirect(303, '/test');
+	res.redirect(303, '/add-device-func');
 
-	
 });
 
-app.use('/test' , func);
+app.use('/add-device-func' , add_device_func);
+
+//Devices List
+app.use('/devices' , list_devices_func);
+
+
 
 app.use(function(req , res){
 	res.type('text/html');
