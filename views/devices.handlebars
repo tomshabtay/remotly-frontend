@@ -1,4 +1,24 @@
+
 <div class="page-header">
 <h3>Devices List</h3>
-{{content}}
+<p>Here you can see all your listed devices</p>
 </div>
+
+<div class="container">
+{{#each this}}
+    <div class="row">
+    	{{#if name includeZero=true}}
+    		<div class="col">
+      			<h4>{{name}} {{ip}}</h4>
+      			<a href="/details/{{name}}">{{name}} details</a>
+      			<hr>
+    		</div>
+		{{/if}}
+
+
+    </div>
+{{/each}}
+</div>
+
+
+

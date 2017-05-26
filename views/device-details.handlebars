@@ -1,0 +1,28 @@
+
+<div class="page-header">
+<h3>Device Details</h3>
+<p></p>
+</div>
+
+<div class="container">
+
+<h3>{{name}}</h3>
+<h4><b>ip</b> : {{ip}}</h4>
+<h4><b>username</b> : {{username}}</h4>
+<h4><b>password</b> : {{password}}</h4>
+<hr>
+{{#each packages}}
+	<p>{{name}} <b>ver:</b> {{ver}} </p>
+{{/each}}
+
+
+
+
+
+<a href="/details/{{name}}">link</a>
+<hr>
+
+</div>
+
+
+

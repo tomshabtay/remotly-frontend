@@ -2,41 +2,27 @@ const express = require('express');
 const router = express.Router();
 var http = require('http');
 
-var devices = {
-
-  "centos": {
-    "name": "centos",
-    "ip": "10.0.0.2",
-  },
-   "another-centos": {
-    "name": "another-centos",
-    "ip": "10.0.0.3"
-  },
-   "machine": {
-    "name": "machine",
-    "ip": "10.0.0.4"
-  }
-};
 
 /* GET api listing. */
-router.get('/', (req, res) => {
+router.get('/:name', (req, res) => {
 
-var messageFromServer = "";
 var body = '';
 
 var options = {
   host: 'localhost',
   port: 4567,
-  path: "devices/list"
+  path: "devices/" + req.params.name + "/details"
 };
 
 http.get(options, function(resp){
-	//resp.setEncoding('json');
+	resp.setEncoding();
 
 	resp.on('data', function(chunk){
 		body += chunk;
 		var fbResponse = JSON.parse(body);
-  		res.render('devices' , fbResponse);
+    console.log(options.path);
+    console.log(chunk);
+  		res.render('device-details' , fbResponse);
  	});
  	
 }).on("error", function(e){

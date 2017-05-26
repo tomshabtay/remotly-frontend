@@ -5,6 +5,7 @@ var handlebars = require('express-handlebars');
 var formidable = require('formidable');
 var credentials = require('./credentials.js');
 
+
 //New Device
 var add_device_func = require('./add-device-func');
 newdevice = {};
@@ -12,13 +13,17 @@ newdevice = {};
 //List Device
 var list_devices_func = require('./list-devices-func');
 
+//Device Details
+var details_device_func = require('./details-device-func');
+
 app.disable('x-powered-by');
 //Set handlebars
 app.engine('handlebars', handlebars({defaultLayout: 'main'}));
 app.set('view engine' , 'handlebars');
 
 //Set port
-app.set('port', process.env.PORT || 3000);
+//app.set('port', process.env.PORT || 3000);
+const PORT = 8080;
 
 //Set public dir
 app.use(express.static(__dirname + '/public'));
@@ -82,6 +87,9 @@ app.use('/add-device-func' , add_device_func);
 //Devices List
 app.use('/devices' , list_devices_func);
 
+//Device Details
+app.use('/details/' , details_device_func);
+
 
 
 app.use(function(req , res){
@@ -91,7 +99,5 @@ app.use(function(req , res){
 });
 
 
-app.listen(app.get('port') , function(){
-	console.log("Express started...")
-
-})
+app.listen(PORT, "0.0.0.0");
+console.log('Running on http://localhost:' + PORT);
