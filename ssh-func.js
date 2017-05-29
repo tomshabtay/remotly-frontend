@@ -4,24 +4,29 @@ var http = require('http');
 
 
 /* GET api listing. */
-router.get('/:name', (req, res) => {
+router.get('/:name/:command', (req, res) => {
 
 var body = '';
 
 var options = {
   host: 'localhost',
   port: 4567,
-  path: "devices/" + req.params.name + "/details"
+  path: "ssh/do/" + req.params.name + "/" + req.params.command
 };
 
+var msg = {
+  msg :'SSH.'
+};
 http.get(options, function(resp){
 	resp.setEncoding();
 
 	resp.on('data', function(chunk){
 		body += chunk;
-		var fbResponse = JSON.parse(body);
     console.log(options.path);
-  		res.render('device-details' , fbResponse);
+		//var fbResponse = JSON.parse(body);
+    console.log(body);
+    res.render('msg' , msg);
+  		
  	});
  	
 }).on("error", function(e){
@@ -30,6 +35,9 @@ http.get(options, function(resp){
     
     
 });
+
+
+
 
 
 module.exports = router;

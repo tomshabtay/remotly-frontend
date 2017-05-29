@@ -2,6 +2,9 @@
 <div class="page-header">
 <h3>Devices List</h3>
 <p>Here you can see all your listed devices</p>
+ <form action="/add-device">
+    <input type="submit" class="btn btn-default" value="Add Device" />
+</form>
 </div>
 
 <div class="container">
@@ -9,8 +12,11 @@
     <div class="row">
     	{{#if name includeZero=true}}
     		<div class="col">
-      			<h4>{{name}} {{ip}}</h4>
-      			<a href="/details/{{name}}">{{name}} details</a>
+      			<h4 >{{name}} {{ip}}</h4>
+            <a href="/ssh/{{name}}/rpm">ssh</a>  | 
+      			<a href="/details/{{name}}">details</a>  | 
+      			<a href="/remove/{{name}}">remove</a>
+            
       			<hr>
     		</div>
 		{{/if}}

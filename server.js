@@ -16,6 +16,24 @@ var list_devices_func = require('./list-devices-func');
 //Device Details
 var details_device_func = require('./details-device-func');
 
+//Remove Device
+var remove_device_func = require('./remove-device-func');
+
+//Update Package
+var update_pack_func = require('./update-pack-func');
+
+//Update All Packages
+var update_all_packs_func = require('./update-all-packs-func');
+
+//Remove Package
+var remove_pack_func = require('./remove-pack-func');
+
+//Add Package
+var add_pack_func = require('./add-pack-func');
+
+//SSH
+var ssh_func = require('./ssh-func');
+
 app.disable('x-powered-by');
 //Set handlebars
 app.engine('handlebars', handlebars({defaultLayout: 'main'}));
@@ -65,7 +83,7 @@ app.get('/device-added-success',function(req , res){
 app.get('/device-added-fail',function(req , res){
 	res.render('device-added-fail');
 });
-
+//Form process add device
 app.post('/process-add-device' , function(req , res){
 	console.log('what: ' + req.query.form);
 	console.log('Name: ' + req.body.name);
@@ -82,6 +100,18 @@ app.post('/process-add-device' , function(req , res){
 
 });
 
+//Form process add pack
+app.post('/process-add-pack/:name' , function(req , res){
+	console.log('what: ' + req.query.form);
+	console.log('Pack: ' + req.body.pack);
+	console.log('OS: ' + req.params.name);
+
+	res.redirect(303, '/add-pack-func/' + 
+		req.params.name + '/' +
+		req.body.pack
+		);
+
+});
 app.use('/add-device-func' , add_device_func);
 
 //Devices List
@@ -89,6 +119,22 @@ app.use('/devices' , list_devices_func);
 
 //Device Details
 app.use('/details/' , details_device_func);
+
+//Remove Device
+app.use('/remove/' , remove_device_func);
+
+//Remove Package
+app.use('/remove-pack/' , remove_pack_func);
+
+//Add Package
+app.use('/add-pack-func/' , add_pack_func);
+
+//Update All Packages
+app.use('/update-all-packs-func/' , update_all_packs_func);
+
+//SSH
+app.use('/ssh/' , ssh_func);
+
 
 
 
