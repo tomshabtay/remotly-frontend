@@ -1,3 +1,41 @@
 <div class="page-header">
-<h3>Welcome to Remotly</h3>
+	<h3>Welcome to Remotly</h3>
 </div>
+
+<div class="row">
+	<div class="col-md-4">
+		<br>
+		<form action="/update-all-devices-func">
+			<input type="submit" class="btn btn-default" value="Update All Packs On All Devices" />
+		</form>
+	</div>
+	<div class="col-md-8">
+		<div class="addPackToAll">
+			<form class="formAddPackToAll" role="form"
+			action="/process-add-pack-to-all/{{name}}?form=addpacktoall" method="POST">
+			<input type="hidden" name="_csrf" value="{{csrf}}">
+
+			<div class="form-group" style="padding:20px;">
+				<label for="fieldName" class="col-sm-4 control-label">
+					Add Package To All Devices:</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" id="fieldPackName"
+						name="pack">
+						<button type="submit" class="btn btn-default">Submit</button>
+					</div>
+				</div> <!-- End of form-group -->
+
+			</div> <!-- End of form-group -->
+		</div>
+	</div>
+
+	<div class="page-header">
+	<h3>Recommended Packages</h3>
+</div>
+{{>recommended}}
+
+	
+</div>
+
+
+

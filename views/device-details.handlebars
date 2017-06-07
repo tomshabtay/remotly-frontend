@@ -1,57 +1,69 @@
 
 <div class="page-header">
-<h3>Device Details</h3>
-<p></p>
+  <h3>Device Details</h3>
+  <p></p>
 </div>
 
 <div class="container">
 
-<h3>{{name}}</h3>
-<h4><b>ip</b> : {{ip}}</h4>
-<h4><b>username</b> : {{username}}</h4>
-<h4><b>password</b> : {{password}}</h4>
- <form action="/update-all-packs-func/{{name}}">
-    <input type="submit" class="btn btn-default" value="Update All Packs" />
-</form>
-<hr>
+  <div class="row">
+    <!-- First Col -->
+    <div class="col-md-3">
+      <h4>{{name}}</h4>
+      <h4><b>ip</b> : {{ip}}</h4>
+      <h4><b>username</b> : {{username}}</h4>
+      <h4><b>password</b> : {{password}}</h4>
 
-<!-- FORM -->
-	<div class="page-header">
-<h4>Add Package</h4>
-<div class="addPack">
-<form class="formAddPack" role="form"
-  action="/process-add-pack/{{name}}?form=addpack" method="POST">
-  <input type="hidden" name="_csrf" value="{{csrf}}">
- 
-  <div class="form-group" style="padding:20px;">
-    <label for="fieldName" class="col-sm-2 control-label">
-    Package Name:</label>
-    <div class="col-sm-4">
-      <input type="text" class="form-control" id="fieldPackName"
-      name="pack">
     </div>
-  </div> <!-- End of form-group -->
-  <div class="form-group" style="padding:20px;">
-    <div class="col-sm-4">
-      <button type="submit" class="btn btn-default">Submit</button>
+
+    <div class="col-md-3">
+      <br>
+      <br>
+      <form action="/update-all-packs-func/{{name}}">
+        <input type="submit" class="btn btn-default" value="Update All Packs" />
+      </form>
     </div>
-  </div> <!-- End of form-group -->
-<br>
-</form>
-</div>
-</div>
 
-<!-- END FORM -->
+    <!-- Second Col -->
+    <div class="col-md-6">
+      <!-- FORM -->
+      
+      
+      <div class="addPack">
+        <form class="formAddPack" role="form"
+        action="/process-add-pack/{{name}}?form=addpack" method="POST">
+        <input type="hidden" name="_csrf" value="{{csrf}}">
+
+        <div class="form-group" style="padding:20px;">
+          <label for="fieldName" class="col-sm-2 control-label">
+            Add Package:</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="fieldPackName"
+              name="pack">
+            </div>
+          </div> <!-- End of form-group -->
+          <div class="form-group" style="padding:20px;">
+            <div class="col-sm-4">
+              <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+          </div> <!-- End of form-group -->
+
+        </form>
+      </div>
+      
+    </div>
+
+    <!-- END FORM -->
+  </div>
+  <br>
+  <h4>Packages:</h4>
+  {{#each packages}}
+  <p>(<a href="../remove-pack/{{../name}}/{{name}}">x</a> |
+   <a href="../update-pack/{{../name}}/{{name}}">u</a>) {{name}} <b>ver:</b> {{ver}} </p>
+   {{/each}}
 
 
-{{#each packages}}
-	<p>(<a href="../remove-pack/{{../name}}/{{name}}">x</a> |
-	<a href="../update-pack/{{../name}}/{{name}}">u</a>) {{name}} <b>ver:</b> {{ver}} </p>
-{{/each}}
-
-<hr>
-
-</div>
-
+   
+ </div>
 
 
