@@ -15,7 +15,8 @@ var options = {
 };
 
 var msg = {
-  msg :'Pack Installed.'
+  msg :'Pack Installed.',
+  backlink : '../../details/' + req.params.name
 };
 http.get(options, function(resp){
 	resp.setEncoding();

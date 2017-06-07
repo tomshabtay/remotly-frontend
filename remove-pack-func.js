@@ -15,7 +15,8 @@ var options = {
 };
 
 var msg = {
-  msg :'Package Removed.'
+  msg :'Package Removed.',
+  backlink : '../../details/' + req.params.name
 };
 http.get(options, function(resp){
 	resp.setEncoding();

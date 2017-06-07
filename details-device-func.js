@@ -19,10 +19,13 @@ http.get(options, function(resp){
 
 	resp.on('data', function(chunk){
 		body += chunk;
-		var fbResponse = JSON.parse(body);
-    console.log(options.path);
-  		res.render('device-details' , fbResponse);
+    
  	});
+
+  resp.on('end', function(){
+  var fbResponse = JSON.parse(body);
+  res.render('device-details' , fbResponse);
+});
  	
 }).on("error", function(e){
   console.log("Got error: " + e.message);

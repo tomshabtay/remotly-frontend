@@ -5,7 +5,6 @@ var handlebars = require('express-handlebars');
 var formidable = require('formidable');
 var credentials = require('./credentials.js');
 
-
 //New Device
 var add_device_func = require('./add-device-func');
 newdevice = {};
@@ -131,6 +130,9 @@ app.use('/add-pack-func/' , add_pack_func);
 
 //Update All Packages
 app.use('/update-all-packs-func/' , update_all_packs_func);
+
+//Update Pack
+app.use('/update-pack/', update_pack_func);
 
 //SSH
 app.use('/ssh/' , ssh_func);

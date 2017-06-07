@@ -34,10 +34,14 @@ http.get(options, function(resp){
 	//resp.setEncoding('json');
 
 	resp.on('data', function(chunk){
-		body += chunk;
-		var fbResponse = JSON.parse(body);
-  		res.render('devices' , fbResponse);
- 	});
+    body += chunk;
+    
+  });
+
+  resp.on('end', function(){
+  var fbResponse = JSON.parse(body);
+  res.render('devices' , fbResponse);
+});
  	
 }).on("error", function(e){
   console.log("Got error: " + e.message);
