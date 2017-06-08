@@ -11,7 +11,7 @@ var body = '';
 var options = {
   host: 'localhost',
   port: 4567,
-  path: "ssh/update-all" + req.params.pack
+  path: "ssh/update-all/" + req.params.pack
 };
 
 var msg = {
