@@ -36,6 +36,9 @@ var update_all_func = require('./update-all-func');
 //Install Pack On All
 var install_all_func = require('./install-all-func');
 
+//Remove Pack On All
+var remove_all_func = require('./remove-all-func');
+
 //SSH
 var ssh_func = require('./ssh-func');
 
@@ -148,6 +151,11 @@ app.use('/update-all-devices-func' , update_all_func);
 
 //Install On All
 app.use('/install-all-func' , install_all_func);
+
+//Remove On All
+app.use('/remove-all-func' , remove_all_func);
+
+
 
 
 
